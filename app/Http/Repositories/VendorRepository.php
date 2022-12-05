@@ -2,17 +2,19 @@
 
 namespace App\Http\Repositories;
 use App\Http\Interfaces\VendorInterface;
+use App\Imports\Vendors\VendorImport;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VendorRepository implements VendorInterface
 {
-    public $vendor;
+    public $vendorModel;
 
     public function __construct(Vendor $vendor)
     {
-        $this->vendor = $vendor;
+        $this->vendorModel = $vendor;
     }
 
     public function index($vendorDataTable)
@@ -27,7 +29,7 @@ class VendorRepository implements VendorInterface
 
     public function store($request)
     {
-        $this->vendor::create([
+        $this->vendorModel::create([
             'name'=> $request->name,
             'phone'=> $request->phone,
             'email'=> $request->email,
@@ -38,18 +40,43 @@ class VendorRepository implements VendorInterface
         return redirect()->back();
     }
 
-    public function edit()
+    public function edit($id)
     {
-        // TODO: Implement edit() method.
+        $vendor = $this->vendorModel::find($id);
+        return ($vendor) ? view('vendors.edit', compact('vendor'))  : redirect(route('admin.vendor.index'));
     }
 
-    public function update()
+    public function update($request)
     {
-        // TODO: Implement update() method.
+        $vendor = $this->vendorModel::findOrFail($request->id);
+        $vendor->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+        ]);
+
+        Alert::toast('Vendor Updated');
+
+        return redirect(route('admin.vendor.index'));
     }
 
-    public function delete()
+    public function delete($request)
     {
-        // TODO: Implement delete() method.
+        $vendor = $this->vendorModel::findOrFail($request->id);
+        $vendor->delete();
+        return 1;
+    }
+
+    public function import()
+    {
+        return view('Vendors.import');
+    }
+
+    public function storeImport($request)
+    {
+        Excel::import(new VendorImport(), $request->sheet);
+
+        Alert::toast('Vendor Updated');
+        return redirect(route('admin.vendor.index'));
     }
 }

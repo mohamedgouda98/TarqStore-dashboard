@@ -23,6 +23,7 @@
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
 <script src="{{asset('adminAssets/plugins/sweetalerts/sweetalert2.min.js')}}"></script>
+<script src="{{asset('adminAssets/custom/main.js')}}"></script>
 
 @stack('js')
 

@@ -22,4 +22,5 @@ class Vendor extends Model
             'password' => 'required',
         ];
     }
+
 }

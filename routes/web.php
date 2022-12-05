@@ -21,12 +21,14 @@ Route::get('/admin/home', function () {
 Route::group(['prefix'=> 'admin', 'as' => 'admin'], function(){
 
     Route::group(['prefix'=> 'vendor', 'as' => '.vendor.'], function(){
-        Route::get('/index', [VendorController::class, 'index']);
-        Route::get('/create', [VendorController::class, 'create']);
+        Route::get('/', [VendorController::class, 'index'])->name('index');
+        Route::get('/import', [VendorController::class, 'import'])->name('import');
+        Route::post('/import/store', [VendorController::class, 'storeImport'])->name('import.store');
+        Route::get('/create', [VendorController::class, 'create'])->name('create');
         Route::post('/store', [VendorController::class, 'store'])->name('store');
-        Route::get('/edit', [VendorController::class, 'edit']);
-        Route::get('/update', [VendorController::class, 'update']);
-        Route::get('/delete', [VendorController::class, 'delete']);
+        Route::get('/edit/{id}', [VendorController::class, 'edit'])->name('edit');
+        Route::put('/update', [VendorController::class, 'update'])->name('update');
+        Route::delete('/delete', [VendorController::class, 'delete'])->name('delete');
     });
 
 });

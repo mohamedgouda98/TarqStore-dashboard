@@ -9,13 +9,23 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Create Vendor</h4>
+                                            <h4>Import Vendors</h4>
                                         </div>
                                     </div>
                                 </div>
+                                @if($errors->any())
+                                    @foreach($errors->all() as $error)
+                                        {{$error}}<br>
+                                    @endforeach
+                                @endif
                                 <div class="widget-content widget-content-area">
-                                    <form method="post" action="{{route('admin.vendor.store')}}">
-                                        @include('Vendors._form')
+                                    <form method="post" action="{{route('admin.vendor.import.store')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="file" name="sheet" >
+                                        @error('sheet')
+                                        <p class="text-danger">{{$message}}</p>
+                                        @enderror
+                                        <button class="btn btn-primary" type="submit">Save</button>
                                     </form>
 
 

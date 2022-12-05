@@ -128,7 +128,9 @@ code {
   box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06); }
 
 .layout-top-spacing {
-  margin-top: 20px; }
+  margin-top: 20px;
+    width: 100%;
+}
 
 .layout-spacing {
   padding-bottom: 40px; }
@@ -193,7 +195,7 @@ code {
   max-width: 58.333333%;
   margin-right: 80px; }
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -639,7 +641,7 @@ code {
       margin-left: 7px;
       height: 17px; }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -767,7 +769,7 @@ code {
   .page-header {
     display: block; } }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -1044,7 +1046,7 @@ code {
 #sidebar ul.menu-categories .ps__rail-y {
   left: -4px !important; }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
@@ -1078,7 +1080,7 @@ code {
   height: 15px;
   vertical-align: text-top; }
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================

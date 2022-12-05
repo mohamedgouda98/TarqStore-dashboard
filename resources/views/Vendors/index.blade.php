@@ -13,6 +13,8 @@
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
+                <a href="{{route('admin.vendor.create')}}" class="btn btn-primary">Create Vendor</a>
+                <a href="{{route('admin.vendor.import')}}" class="btn btn-primary">Import Vendors</a>
 
                 <div class="row layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
