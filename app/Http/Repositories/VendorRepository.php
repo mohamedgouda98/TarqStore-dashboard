@@ -37,7 +37,6 @@ class VendorRepository implements VendorInterface
             $name [$lang] = $request->$flag;
         }
 
-        dd($name);
             $this->vendorModel::create([
             'name'=> ['en' => $request->name_en , 'ar' => $request->name_ar, 'fa' => $request->name_fa],
             'phone'=> $request->phone,
