@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f4125193e29f5b2e79b7126c1f4290a",
+    "content-hash": "fe925febbad6ac82abcb89345b22ccbe",
     "packages": [
         {
             "name": "brick/math",
@@ -6492,16 +6492,16 @@
         },
         {
             "name": "unlimited/repository-design-pattern-laravel",
-            "version": "v4.0",
+            "version": "v4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mohamedgouda98/repository-design-pattern-laravel.git",
-                "reference": "112ae77f2361a4a1de35e4fcd6b6e6f683b5a10c"
+                "reference": "eb63f682329fb68a034d7ce97655fc16d12be3d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mohamedgouda98/repository-design-pattern-laravel/zipball/112ae77f2361a4a1de35e4fcd6b6e6f683b5a10c",
-                "reference": "112ae77f2361a4a1de35e4fcd6b6e6f683b5a10c",
+                "url": "https://api.github.com/repos/mohamedgouda98/repository-design-pattern-laravel/zipball/eb63f682329fb68a034d7ce97655fc16d12be3d8",
+                "reference": "eb63f682329fb68a034d7ce97655fc16d12be3d8",
                 "shasum": ""
             },
             "require-dev": {
@@ -6526,9 +6526,9 @@
             "description": "repository_pattern",
             "support": {
                 "issues": "https://github.com/mohamedgouda98/repository-design-pattern-laravel/issues",
-                "source": "https://github.com/mohamedgouda98/repository-design-pattern-laravel/tree/v4.0"
+                "source": "https://github.com/mohamedgouda98/repository-design-pattern-laravel/tree/v4.2"
             },
-            "time": "2022-12-05T01:07:20+00:00"
+            "time": "2022-12-19T22:16:26+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
