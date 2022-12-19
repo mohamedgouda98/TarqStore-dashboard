@@ -1,9 +1,16 @@
-    @csrf
+@csrf
     <div class="form-group mb-3">
-        <label>Vendor name</label>
-        <input type="text" name="name" class="form-control" value="{{old('name', $vendor->name ?? '')}}">
-        @error('name')
+        <label>Vendor name en</label>
+        <input type="text" name="name_en" class="form-control" value="{{old('name_en', $vendor->name_en ?? '')}}">
+        @error('name_en')
             <p class="text-danger">{{$message}}</p>
+        @enderror
+    </div>
+    <div class="form-group mb-3">
+        <label>Vendor name ar</label>
+        <input type="text" name="name_ar" class="form-control" value="{{old('name_ar', $vendor->name_ar?? '')}}">
+        @error('name_ar')
+        <p class="text-danger">{{$message}}</p>
         @enderror
     </div>
     <div class="form-group mb-3">
@@ -21,6 +28,14 @@
         <p class="text-danger">{{$message}}</p>
         @enderror
     </div>
+
+<div class="form-group mb-3">
+    <label>Vendor Password</label>
+    <input type="text" name="password" class="form-control" value="{{old('password', $vendor->phone ?? '')}}">
+    @error('password')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
+</div>
 
     <button type="submit" class="btn btn-primary mt-3">Save</button>
 

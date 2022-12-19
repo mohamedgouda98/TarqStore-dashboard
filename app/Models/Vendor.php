@@ -4,19 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Vendor extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $table='vendors';
 
     protected $fillable = ['name', 'email', 'phone', 'password'];
 
+    protected $translatable = ['name'];
+
     public static function rules()
     {
         return [
-            'name' => 'required',
+            'name_ar' => 'required',
+            'name_en' => 'required',
             'email' => 'required|unique:vendors,email',
             'phone' => 'required|unique:vendors,phone',
             'password' => 'required',

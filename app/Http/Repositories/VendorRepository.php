@@ -6,6 +6,7 @@ use App\Imports\Vendors\VendorImport;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VendorRepository implements VendorInterface
@@ -29,8 +30,16 @@ class VendorRepository implements VendorInterface
 
     public function store($request)
     {
-        $this->vendorModel::create([
-            'name'=> $request->name,
+        $name = [];
+        foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang)
+        {
+            $flag = 'name_' . $lang;
+            $name [$lang] = $request->$flag;
+        }
+
+        dd($name);
+            $this->vendorModel::create([
+            'name'=> ['en' => $request->name_en , 'ar' => $request->name_ar, 'fa' => $request->name_fa],
             'phone'=> $request->phone,
             'email'=> $request->email,
             'password'=> Hash::make($request->password),

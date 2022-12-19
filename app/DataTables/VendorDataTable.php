@@ -25,7 +25,7 @@ class VendorDataTable extends DataTable
         return (new EloquentDataTable($query))
 //            ->addColumn('action', 'vendor.action')
             ->addColumn('status', 'Vendors.datatable.status')
-            ->addColumn('actionso', 'Vendors.datatable.action')
+            ->addColumn('actions', 'Vendors.datatable.action')
             ->rawColumns(['status', 'actions'])
             ->setRowId('id');
     }
@@ -64,7 +64,8 @@ class VendorDataTable extends DataTable
     {
         return [
             ['name' => 'id',                  'data' => 'id',                  'title' => 'ID'],
-            ['name' => 'name',                'data' => 'name',                'title' => 'Name'],
+            ['name' => 'name',                'data' => 'name.en',                'title' => 'Name En'],
+            ['name' => 'name',                'data' => 'name.ar',                'title' => 'Name Ar'],
             ['name' => 'phone',               'data' => 'phone',               'title' => 'Phone'],
             ['name' => 'email',               'data' => 'email',               'title' => 'Email'],
             ['name' => 'status',               'data' => 'status',              'title' => 'Status'],

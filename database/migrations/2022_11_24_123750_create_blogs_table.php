@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('body');
+            $table->text('title');
+            $table->longText('body');
             $table->string('main_image');
             $table->enum('status', ['active', 'not_active']);
             $table->unsignedBigInteger('admin_id');
