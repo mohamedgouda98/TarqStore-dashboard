@@ -33,17 +33,17 @@ class VendorTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_store_with_invalid_data()
-    {
-        $data = [
-            'name' => 'test',
-            'phone' => '01000000',
-            'password'=> '123456'
-        ];
-        $response = $this->post('/admin/vendor/store', $data);
-
-        $response->assertStatus(302);
-    }
+//    public function test_store_with_invalid_data()
+//    {
+//        $data = [
+//            'name' => 'test',
+//            'phone' => '01000000',
+//            'password'=> '123456'
+//        ];
+//        $response = $this->post('/admin/vendor/store', $data);
+//
+//        $response->assertStatus(302);
+//    }
 
 //    public function test_store_with_valid_data()
 //    {
