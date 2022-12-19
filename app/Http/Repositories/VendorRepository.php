@@ -45,7 +45,7 @@ class VendorRepository implements VendorInterface
         ]);
 
         Alert::toast('Vendor Created');
-        return redirect()->back();
+        return redirect(route('admin.vendor.index'));
     }
 
     public function edit($id)
