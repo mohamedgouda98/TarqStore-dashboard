@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogCategoriesController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -31,6 +32,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
             Route::get('/edit/{id}', [VendorController::class, 'edit'])->name('edit');
             Route::put('/update', [VendorController::class, 'update'])->name('update');
             Route::delete('/delete', [VendorController::class, 'delete'])->name('delete');
+        });
+
+        Route::group(['prefix'=> 'blog/categories', 'as' => '.blog.category.'], function(){
+            Route::get('/', [BlogCategoriesController::class, 'index'])->name('index');
+            Route::get('/create', [BlogCategoriesController::class, 'create'])->name('create');
+            Route::post('/store', [BlogCategoriesController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [BlogCategoriesController::class, 'edit'])->name('edit');
+            Route::put('/update', [BlogCategoriesController::class, 'update'])->name('update');
+            Route::delete('/delete', [BlogCategoriesController::class, 'delete'])->name('delete');
         });
 
     });
