@@ -41,7 +41,6 @@ class LocalizationService
         return $validationList;
     }
 
-
     public static function getLocalizationDatatable($translatable)
     {
         $valuesList=[];
