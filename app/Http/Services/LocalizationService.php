@@ -1,11 +1,8 @@
 <?php
-
-
 namespace App\Http\Services;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class LocalizationService
