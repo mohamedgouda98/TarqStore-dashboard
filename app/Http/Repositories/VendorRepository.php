@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 use App\Http\Interfaces\VendorInterface;
+use App\Http\Services\LocalizationService;
 use App\Imports\Vendors\VendorImport;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Hash;
@@ -11,11 +12,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class VendorRepository implements VendorInterface
 {
-    public $vendorModel;
+    public $vendorModel, $localizationService;
 
-    public function __construct(Vendor $vendor)
+    public function __construct(Vendor $vendor,  LocalizationService $localizationService)
     {
         $this->vendorModel = $vendor;
+        $this->localizationService = $localizationService;
     }
 
     public function index($vendorDataTable)
@@ -36,13 +38,13 @@ class VendorRepository implements VendorInterface
             $flag = 'name_' . $lang;
             $name [$lang] = $request->$flag;
         }
+        $localizationList =  $this->localizationService::getLocalizationList($this->vendorModel, $request);
 
-            $this->vendorModel::create([
-            'name'=> ['en' => $request->name_en , 'ar' => $request->name_ar, 'fa' => $request->name_fa],
+            $this->vendorModel::create(array_merge([
             'phone'=> $request->phone,
             'email'=> $request->email,
             'password'=> Hash::make($request->password),
-        ]);
+        ], $localizationList));
 
         Alert::toast('Vendor Created');
         return redirect(route('admin.vendor.index'));
@@ -57,11 +59,11 @@ class VendorRepository implements VendorInterface
     public function update($request)
     {
         $vendor = $this->vendorModel::findOrFail($request->id);
-        $vendor->update([
-            'name' => $request->name,
+        $localizationList =  $this->localizationService::getLocalizationList($this->vendorModel, $request);
+        $vendor->update(array_merge([
             'email' => $request->email,
             'phone' => $request->phone,
-        ]);
+        ], $localizationList));
 
         Alert::toast('Vendor Updated');
 

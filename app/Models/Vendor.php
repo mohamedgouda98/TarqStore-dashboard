@@ -14,13 +14,11 @@ class Vendor extends Model
 
     protected $fillable = ['name', 'email', 'phone', 'password'];
 
-    protected $translatable = ['name'];
+    public $translatable = ['name'];
 
     public static function rules()
     {
         return [
-            'name_ar' => 'required',
-            'name_en' => 'required',
             'email' => 'required|unique:vendors,email',
             'phone' => 'required|unique:vendors,phone',
             'password' => 'required',

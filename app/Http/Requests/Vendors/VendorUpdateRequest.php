@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Vendors;
 
+use App\Http\Services\LocalizationService;
 use App\Models\Vendor;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VendorUpdateRequest extends FormRequest
@@ -24,10 +26,11 @@ class VendorUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required',
+        $localization =  LocalizationService::getLocalizationValidation((new Vendor())->translatable);
+
+        return array_merge([
             'email' => 'required|unique:vendors,email,' . $this->id,
             'phone' => 'required|unique:vendors,phone,' . $this->id,
-        ];
+        ], $localization);
     }
 }

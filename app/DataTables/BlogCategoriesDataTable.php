@@ -24,7 +24,8 @@ class BlogCategoriesDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('actions', 'BlogCategories.action')
+            ->addColumn('actions', 'BlogCategories.datatable.action')
+            ->rawColumns(['actions'])
             ->setRowId('id');
     }
 
@@ -60,16 +61,11 @@ class BlogCategoriesDataTable extends DataTable
         $localizations =  LocalizationService::getLocalizationDatatable((new BlogCategory)->translatable);
         $columns = array_merge([
             ['name' => 'id',                  'data' => 'id',                  'title' => 'ID'],
-//           ['name' => 'actions',             'data' => 'actions',             'title' => 'Actions', 'exportable' => false, 'printable' => false, 'orderable' => false, 'searchable' => false],
        ], $localizations,
             [
                 ['name' => 'actions',             'data' => 'actions',             'title' => 'Actions', 'exportable' => false, 'printable' => false, 'orderable' => false, 'searchable' => false],
             ]
         );
-
-//        $columns =  array_merge($columns,
-//            ['name' => 'actions',             'data' => 'actions',             'title' => 'Actions', 'exportable' => false, 'printable' => false, 'orderable' => false, 'searchable' => false],
-//        );
 
         return $columns;
     }

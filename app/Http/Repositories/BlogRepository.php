@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Http\Repositories;
+use App\Http\Interfaces\BlogInterface;
+use App\Http\Services\LocalizationService;
+use App\Http\Trait\ImageUploader;
+use App\Models\Blog;
+use App\Models\BlogCategory;
+use RealRashid\SweetAlert\Facades\Alert;
+
+class BlogRepository implements BlogInterface
+{
+    use ImageUploader;
+
+    private $blogModel;
+    private $localizationService;
+
+    public function __construct(Blog $blog, LocalizationService $localizationService)
+    {
+        $this->blogModel = $blog;
+        $this->localizationService = $localizationService;
+    }
+
+    public function index($blogDataTable)
+    {
+        return $blogDataTable->render('blogs.index');
+    }
+
+    public function create()
+    {
+        $blogCategories = BlogCategory::get();
+        return view('Blogs.create', compact('blogCategories'));
+    }
+
+    public function store($request)
+    {
+        $localizationList =  $this->localizationService::getLocalizationList($this->blogModel, $request);
+        $image = $this->uploadImage($request->main_image, 'blogs/images');
+        $this->blogModel::create(array_merge($localizationList, [
+            'status' => $request->status,
+            'category_id' => $request->blog_category_id,
+            'main_image' => $image,
+            'admin_id'=> 1
+        ])
+        );
+        Alert::toast('Blog Created');
+        return redirect(route('admin.blog.index'));
+    }
+
+    public function edit($id)
+    {
+        $blog = $this->blogModel::find($id);
+        $blogCategories = BlogCategory::get();
+        return ($blog) ? view('Blogs.edit', compact('blog', 'blogCategories'))  : redirect(route('admin.blog.index'));
+    }
+
+    public function update($request)
+    {
+        $localizationList =  $this->localizationService::getLocalizationList($this->blogModel, $request);
+
+        if($request->hasFile('main_image'))
+        {
+            $image = $this->uploadImage($request->main_image, 'blogs/images');
+        }
+        $blog = $this->blogModel::findOrFail($request->id);
+            $blog->update(
+                array_merge($localizationList, [
+                    'status' => $request->status,
+                    'category_id' => $request->blog_category_id,
+                    'main_image' => $image ?? $blog->main_image,
+                    'admin_id'=> 1
+                ])
+            );
+        Alert::toast('Blog Updated');
+        return redirect(route('admin.blog.index'));
+    }
+
+    public function delete($request)
+    {
+        $blog = $this->blogModel::findOrFail($request->id);
+        $blog->delete();
+        return 1;
+    }
+}

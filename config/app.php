@@ -185,6 +185,9 @@ return [
         /*
          * Package Service Providers...
          */
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+
         Unlimited\Repository\RepositoryServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
