@@ -1,5 +1,5 @@
 
-function confirmDelete(id)
+function confirmDelete(id,actionUrl)
 {
     $.ajaxSetup({
         headers: {
@@ -17,7 +17,7 @@ function confirmDelete(id)
         }).then((result) => {
         if (result.value = true) {
             $.ajax({
-                url: '/admin/vendor/delete',
+                url: `/admin/${actionUrl}/delete`,
                 method: 'DELETE',
                 data: {'id': id},
                 success: function (res) {

@@ -25,6 +25,15 @@
 <script src="{{asset('adminAssets/plugins/sweetalerts/sweetalert2.min.js')}}"></script>
 <script src="{{asset('adminAssets/custom/main.js')}}"></script>
 
+<script src="https://cdn.tiny.cloud/1/znzn2upz5wo1j1gx4mq3karg2idu0gaijqkeqh8krgzzqw13/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+</script>
+
 @stack('js')
 
 </body>

@@ -18,7 +18,7 @@
 </a>
 
 <meta name="csrf-token" class="csrf-token" content="{{ csrf_token() }}" />
-<button class="btn btn-danger mb-2 mr-2 confirm_delete" onclick="confirmDelete({{$id}})">
+<button class="btn btn-danger mb-2 mr-2 confirm_delete" onclick="confirmDelete({{$id}}, 'vendor')">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
          class="feather feather-trash-2">

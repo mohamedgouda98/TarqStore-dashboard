@@ -11,13 +11,13 @@ class LocalizationService
     public static function getLocalizationList(Model $model, $request)
     {
         $localizationList =[];
-        $translatable = (new $model)->translatable;
+        $translatable = (new $model)->translatableAttributes;
 
-        foreach ($translatable as $value)
+        foreach ($translatable as $key => $value)
         {
            foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang)
            {
-               $localizationList[$value][$lang] = $request->input($value . '_' . $lang);
+               $localizationList[$key][$lang] = $request->input($key . '_' . $lang);
            }
         }
 
@@ -27,11 +27,11 @@ class LocalizationService
     public static function getLocalizationValidation($translatable)
     {
         $validationList=[];
-        foreach ($translatable as $value)
+        foreach ($translatable as $key => $value)
         {
             foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang)
             {
-                $validationList[$value . '_' . $lang] = ['required'];
+                $validationList[$key . '_' . $lang] = ['required'];
             }
         }
 
@@ -45,7 +45,7 @@ class LocalizationService
         {
             foreach ($translatable as $value)
             {
-                $valuesList[] = ['name' => $value . '.' . $lang , 'data' => $value . '.' . $lang , 'title' => $value . ' ' .$lang];
+                $valuesList[] = ['name' => $value , 'data' => $value . '.' . $lang , 'title' => $value . ' ' .$lang];
             }
         }
 

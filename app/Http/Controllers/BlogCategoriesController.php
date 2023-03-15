@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\BlogCategoriesDataTable;
-use App\DataTables\VendorDataTable;
 use App\Http\Interfaces\BlogCategoriesInterface;
 use App\Http\Requests\BlogCategory\BlogCategoryCreateRequest;
-use App\Http\Requests\Vendors\VendorCreateRequest;
-use App\Http\Requests\Vendors\VendorDeleteRequest;
-use App\Http\Requests\Vendors\VendorUpdateRequest;
+use App\Http\Requests\BlogCategory\BlogCategoryDeleteRequest;
+use App\Http\Requests\BlogCategory\BlogCategoryUpdateRequest;
 
 class BlogCategoriesController extends Controller
 {
@@ -40,12 +38,12 @@ class BlogCategoriesController extends Controller
         return $this->blogInterface->edit($id);
     }
 
-    public function update(VendorUpdateRequest $request)
+    public function update(BlogCategoryUpdateRequest $request)
     {
         return $this->blogInterface->update($request);
     }
 
-    public function delete(VendorDeleteRequest $request)
+    public function delete(BlogCategoryDeleteRequest $request)
     {
         return $this->blogInterface->delete($request);
     }

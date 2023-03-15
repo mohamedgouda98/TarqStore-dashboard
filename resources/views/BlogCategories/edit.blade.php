@@ -9,15 +9,15 @@
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Create Vendor</h4>
+                                <h4>Update Blog Category</h4>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                        <form method="post" action="{{route('admin.vendor.update')}}">
-                            <input type="hidden" name="id" value="{{$vendor->id}}">
+                        <form method="post" action="{{route('admin.blog.category.update')}}">
+                            <input type="hidden" name="id" value="{{$blogCategory->id}}">
                             @method('PUT')
-                           @include('Vendors._form')
+                           @include('BlogCategories._form')
                         </form>
 
 

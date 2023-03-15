@@ -1,18 +1,17 @@
 @csrf
-    <div class="form-group mb-3">
-        <label>Vendor name en</label>
-        <input type="text" name="name_en" class="form-control" value="{{old('name_en', $vendor->name_en ?? '')}}">
-        @error('name_en')
+
+@foreach((new \App\Models\BlogCategory)->translatable as $value)
+    @foreach(LaravelLocalization::getSupportedLanguagesKeys() as $lang)
+        <div class="form-group mb-3">
+            <label>Blog Category {{$value}} {{$lang}}</label>
+            <input type="text" name="{{$value}}_{{$lang}}" class="form-control" value="{{old($value . '_' . $lang, (isset($vendor)) ? $vendor->getTranslation($value,$lang) : '')}}">
+            @error($value.'_'.$lang)
             <p class="text-danger">{{$message}}</p>
-        @enderror
-    </div>
-    <div class="form-group mb-3">
-        <label>Vendor name ar</label>
-        <input type="text" name="name_ar" class="form-control" value="{{old('name_ar', $vendor->name_ar?? '')}}">
-        @error('name_ar')
-        <p class="text-danger">{{$message}}</p>
-        @enderror
-    </div>
+            @enderror
+        </div>
+    @endforeach
+@endforeach
+
     <div class="form-group mb-3">
         <label>Vendor email</label>
         <input type="email" name="email" class="form-control" id="sEmail" aria-describedby="emailHelp1" value="{{old('email', $vendor->email ?? '')}}">

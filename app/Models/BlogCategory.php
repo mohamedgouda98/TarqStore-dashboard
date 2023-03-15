@@ -14,4 +14,10 @@ class BlogCategory extends Model
 
     public $translatable = ['name'];
 
+
+//    public function getImageAttribute($value)
+//    {
+//        return env('AWS_URL') . $value;
+//    }
+
 }
