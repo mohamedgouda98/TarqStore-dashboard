@@ -72,7 +72,7 @@ class CategoriesDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        $localizations =  LocalizationService::getLocalizationDatatable((new Category)->translatable);
+        $localizations =  LocalizationService::getLocalizationDatatable((new Category)->translatableAttributes);
         $columns = array_merge([
             ['name' => 'id',                  'data' => 'id',                  'title' => 'ID'],
         ], $localizations,

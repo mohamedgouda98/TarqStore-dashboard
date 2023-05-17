@@ -17,7 +17,8 @@ class BlogCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => ['ar' => fake()->name(), 'en' => fake()->name()],
+            'name' => ['ar' => fake()->name(), 'en' => fake()->name()]
+
         ];
     }
 }

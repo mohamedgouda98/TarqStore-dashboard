@@ -13,4 +13,15 @@ class Blog extends Model
     protected $fillable = ['title', 'body', 'main_image', 'status', 'category_id', 'admin_id'];
 
     public $translatable = ['title', 'body'];
+
+    public $translatableAttributes = ['title' => 'string', 'body' => 'text'];
+
+
+    protected function firstName(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucfirst($value),
+            set: fn (string $value) => strtolower($value),
+        );
+    }
 }

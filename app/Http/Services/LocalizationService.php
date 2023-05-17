@@ -38,14 +38,19 @@ class LocalizationService
         return $validationList;
     }
 
-    public static function getLocalizationDatatable($translatable)
+    public static function getLocalizationDatatable($translatable, $withText = true)
     {
         $valuesList=[];
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang)
         {
-            foreach ($translatable as $value)
+            foreach ($translatable as $key => $value)
             {
-                $valuesList[] = ['name' => $value , 'data' => $value . '.' . $lang , 'title' => $value . ' ' .$lang];
+                if($withText == false && $value == 'text')
+                {
+                    continue;
+                }
+
+                $valuesList[] = ['name' => $key , 'data' => $key . '.' . $lang , 'title' => $key . ' ' .$lang];
             }
         }
 

@@ -26,6 +26,6 @@ class CategoryCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return LocalizationService::getLocalizationValidation((new Category)->translatable);
+        return LocalizationService::getLocalizationValidation((new Category)->translatableAttributes);
     }
 }

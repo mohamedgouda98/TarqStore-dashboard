@@ -26,7 +26,7 @@ class UpdateBlogRequest extends FormRequest
     public function rules()
     {
         return array_merge(
-            LocalizationService::getLocalizationValidation((new Blog)->translatable),
+            LocalizationService::getLocalizationValidation((new Blog)->translatableAttributes),
             [
                 'blog_category_id' => 'required|exists:blog_categories,id',
                 'status' => 'required',

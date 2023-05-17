@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\DataTables\CategoriesDataTable;
 use App\Http\Interfaces\CategoryInterface;
 use App\Http\Requests\Categories\CategoryCreateRequest;
-use App\Http\Requests\Categories\CategoryDeleteRequest;
-use App\Http\Requests\Categories\CategoryUpdateRequest;
+use App\Http\Requests\Categories\SettingDeleteRequest;
+use App\Http\Requests\Categories\SettingUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -37,12 +37,12 @@ class CategoryController extends Controller
         return $this->categoryInterface->edit($id);
     }
 
-    public function update(CategoryUpdateRequest $request)
+    public function update(SettingUpdateRequest $request)
     {
         return $this->categoryInterface->update($request);
     }
 
-    public function delete(CategoryDeleteRequest $request)
+    public function delete(SettingDeleteRequest $request)
     {
         return $this->categoryInterface->delete($request);
     }

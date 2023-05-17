@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogCategoriesController;
 use App\Http\Controllers\BlogController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -76,6 +78,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'
 
         });
 
+        Route::group(['prefix'=> 'settings', 'as' => 'setting.'], function(){
+            Route::get('/', [SettingsController::class, 'index'])->name('index');
+            Route::get('/create', [SettingsController::class, 'create'])->name('create');
+            Route::post('/store', [SettingsController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [SettingsController::class, 'edit'])->name('edit');
+            Route::put('/update', [SettingsController::class, 'update'])->name('update');
+            Route::delete('/delete', [SettingsController::class, 'delete'])->name('delete');
+        });
+
+
         Route::group(['prefix'=> 'categories', 'as' => 'category.'], function(){
             Route::get('/', [CategoryController::class, 'index'])->name('index');
             Route::get('/create', [CategoryController::class, 'create'])->name('create');
@@ -87,6 +99,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'
 
         Route::group(['prefix'=> 'product', 'as' => 'product.'], function(){
             Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/show/{id}', [ProductController::class, 'show'])->name('show');
+            Route::get('/import', [ProductController::class, 'import'])->name('import');
+            Route::post('/importSheet', [ProductController::class, 'importSheet'])->name('importSheet');
             Route::get('/create', [ProductController::class, 'create'])->name('create');
             Route::post('/store', [ProductController::class, 'store'])->name('store');
             Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
@@ -120,6 +135,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'
             Route::get('/edit/{id}', [PermissionController::class, 'edit'])->name('edit');
             Route::put('/update', [PermissionController::class, 'update'])->name('update');
             Route::delete('/delete', [PermissionController::class, 'delete'])->name('delete');
+        });
+
+        Route::group(['prefix'=> 'ads', 'as' => 'ads.'], function(){
+            Route::get('/create', [AdsController::class, 'create'])->name('create');
+            Route::post('/store', [AdsController::class, 'store'])->name('store');
         });
 
     });

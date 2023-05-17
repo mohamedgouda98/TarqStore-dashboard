@@ -14,6 +14,8 @@ class BlogCategory extends Model
 
     public $translatable = ['name'];
 
+    public $translatableAttributes = ['name' => 'string'];
+
 
 //    public function getImageAttribute($value)
 //    {
