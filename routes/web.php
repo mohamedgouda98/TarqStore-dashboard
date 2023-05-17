@@ -39,7 +39,7 @@ Route::post('/new_password', [AuthController::class, 'newPasswordAction'])->name
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'], function(){
 
-    Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware'=> 'role:blog'], function(){
+    Route::group(['as' => 'admin.', 'middleware'=> 'role:blog'], function(){
 
         Route::get('/', function () {
             return view('index');
