@@ -1,16 +1,15 @@
 @csrf
 
-@foreach((new \App\Models\Blog)->translatable as $value)
+@foreach((new \App\Models\Blog)->translatableAttributes as $key =>  $value)
     @foreach(LaravelLocalization::getSupportedLanguagesKeys() as $lang)
         <div class="form-group mb-3">
-            <label>Blog {{$value}} {{$lang}}</label>
-            @if($value == 'body')
-                <textarea name="{{$value}}_{{$lang}}"  class="form-control" >{{old($value . '_' . $lang, (isset($blog)) ? $blog->getTranslation($value,$lang) : '')}}</textarea>
+            <label>Blog {{$key}} {{$lang}}</label>
+            @if($value == 'string')
+                <input type="text" name="{{$key}}_{{$lang}}" class="form-control" value="{{old($key . '_' . $lang, (isset($blog)) ? $blog->getTranslation($key,$lang) : '')}}">
             @else
-                <input type="text" name="{{$value}}_{{$lang}}" class="form-control" value="{{old($value . '_' . $lang, (isset($blog)) ? $blog->getTranslation($value,$lang) : '')}}">
+                <textarea name="{{$key}}_{{$lang}}" class="form-control"> {{old($key . '_' . $lang, (isset($blog)) ? $blog->getTranslation($key,$lang) : '')}} </textarea>
             @endif
-
-            @error($value.'_'.$lang)
+            @error($key.'_'.$lang)
             <p class="text-danger">{{$message}}</p>
             @enderror
         </div>

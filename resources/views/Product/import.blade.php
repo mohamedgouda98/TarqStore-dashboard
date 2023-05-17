@@ -19,7 +19,7 @@
                                     @endforeach
                                 @endif
                                 <div class="widget-content widget-content-area">
-                                    <form method="post" action="{{route('admin.vendor.import.store')}}" enctype="multipart/form-data">
+                                    <form method="post" action="{{route('admin.product.importSheet')}}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="file" name="sheet" >
                                         @error('sheet')

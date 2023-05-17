@@ -4,9 +4,13 @@ namespace App\Http\Repositories;
 use App\Http\Interfaces\ProductInterface;
 use App\Http\Services\LocalizationService;
 use App\Http\Services\ProductAttributeService;
+use App\Imports\ProductsImport;
 use App\Models\Blog;
 use App\Models\Product;
 use App\Models\ProductAttribute;
+//use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductRepository implements ProductInterface
 {
@@ -18,9 +22,28 @@ class ProductRepository implements ProductInterface
         $this->productAttributeService = $productAttributeService;
     }
 
-    public function index($ProductsDataTable)
+    public function index($productDataTable)
     {
-        // TODO: Implement index() method.
+      return $productDataTable->render('Product.index');
+    }
+
+    public function show($id)
+    {
+        $product = Product::find($id);
+        return view('Product.show', compact('product'));
+    }
+
+    public function import()
+    {
+        return view('Product.import');
+    }
+
+    public function importSheet($request)
+    {
+        Excel::import(new ProductsImport(), $request->sheet);
+
+        Alert::toast('Products Imported');
+        return redirect(route('admin.product.index'));
     }
 
     public function create()
@@ -37,8 +60,11 @@ class ProductRepository implements ProductInterface
                 'price'=> 10
             ])
         );
-        $productAttributes = $this->productAttributeService::getProductAttributesKeysWithRequest($request, $product->id);
 
+        $this->productAttributeService::setProductAttributesKeysWithRequest($request, $product->id);
+
+        Alert::toast('Product Created');
+        return redirect(route('admin.product.index'));
     }
 
     public function edit($id)

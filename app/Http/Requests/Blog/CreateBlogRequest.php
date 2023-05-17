@@ -27,7 +27,7 @@ class CreateBlogRequest extends FormRequest
     public function rules()
     {
         return array_merge(
-            LocalizationService::getLocalizationValidation((new Blog)->translatable),
+            LocalizationService::getLocalizationValidation((new Blog)->translatableAttributes),
             [
                 'main_image' => 'required',
                 'blog_category_id' => 'required|exists:blog_categories,id',

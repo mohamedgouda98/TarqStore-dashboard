@@ -41,3 +41,9 @@ function confirmDelete(id,actionUrl)
 
     });
 }
+
+function updateInput(value)
+{
+    $("#valueInput").prop('type', value);
+    $("#valueInput").attr('value', '');
+}

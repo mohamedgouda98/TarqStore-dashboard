@@ -26,6 +26,6 @@ class BlogCategoryUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return LocalizationService::getLocalizationValidation((new BlogCategory)->translatable);
+        return LocalizationService::getLocalizationValidation((new BlogCategory)->translatableAttributes);
     }
 }

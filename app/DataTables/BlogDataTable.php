@@ -72,7 +72,7 @@ class BlogDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        $localizations =  LocalizationService::getLocalizationDatatable((new Blog)->translatable);
+        $localizations =  LocalizationService::getLocalizationDatatable((new Blog)->translatableAttributes);
         $columns = array_merge([
             ['name' => 'id',                  'data' => 'id',                  'title' => 'ID'],
         ], $localizations,

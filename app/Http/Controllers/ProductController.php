@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProductDataTable;
 use App\Http\Interfaces\ProductInterface;
+use App\Http\Requests\FileImportRequest;
 use App\Http\Requests\Product\ProductStoreRequest;
 use Illuminate\Http\Request;
 
@@ -15,9 +17,24 @@ class ProductController extends Controller
         $this->productInterface = $productInterface;
     }
 
-    public function index($blogCategoriesDataTable)
+    public function index(ProductDataTable $productDataTable)
     {
-        return $this->productInterface->index($blogCategoriesDataTable);
+        return $this->productInterface->index($productDataTable);
+    }
+
+    public function show($id)
+    {
+        return $this->productInterface->show($id);
+    }
+
+    public function import()
+    {
+        return $this->productInterface->import();
+    }
+
+    public function importSheet(FileImportRequest $request)
+    {
+        return $this->productInterface->importSheet($request);
     }
 
     public function create()
