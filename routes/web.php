@@ -37,9 +37,12 @@ Route::post('/reset_password/confirm', [AuthController::class, 'restPasswordConf
 Route::get('/new_password', [AuthController::class, 'newPassword'])->name('new_password.page');
 Route::post('/new_password', [AuthController::class, 'newPasswordAction'])->name('new_password.action');
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'], function(){
+//Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'], function(){
 
-    Route::group(['as' => 'admin.', 'middleware'=> 'role:blog'], function(){
+Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
+//    Route::group(['as' => 'admin.', 'middleware'=> 'role:blog'], function(){
+
+    Route::group(['as' => 'admin.'], function(){
 
         Route::get('/', function () {
             return view('index');
@@ -48,7 +51,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::group(['prefix'=> 'vendor', 'as' => 'vendor.'], function(){
-            Route::get('/', [VendorController::class, 'index'])->name('index');
+            Route::get('/index', [VendorController::class, 'index'])->name('index');
             Route::get('/import', [VendorController::class, 'import'])->name('import');
             Route::post('/import/store', [VendorController::class, 'storeImport'])->name('import.store');
             Route::get('/create', [VendorController::class, 'create'])->name('create');
@@ -138,6 +141,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'
         });
 
         Route::group(['prefix'=> 'ads', 'as' => 'ads.'], function(){
+            Route::get('/', [AdsController::class, 'index'])->name('index');
             Route::get('/create', [AdsController::class, 'create'])->name('create');
             Route::post('/store', [AdsController::class, 'store'])->name('store');
         });
