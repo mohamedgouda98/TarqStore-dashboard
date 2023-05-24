@@ -24,8 +24,6 @@ class BlogRepository implements BlogInterface
 
     public function index($blogDataTable)
     {
-        $data = Blog::first();
-        dd($data->first_name);
         return $blogDataTable->render('blogs.index');
     }
 
