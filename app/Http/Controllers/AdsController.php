@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\AdsDataTable;
 use App\Http\Interfaces\AdsInterface;
 use App\Http\Requests\Ads\CreateAdsRequest;
 use Illuminate\Http\Request;
@@ -16,6 +17,10 @@ class AdsController extends Controller
     }
 
 
+    public function index(AdsDataTable $AdsDataTable)
+    {
+        return $this->adsInterface->index($AdsDataTable);
+    }
     public function create()
     {
         return $this->adsInterface->create();

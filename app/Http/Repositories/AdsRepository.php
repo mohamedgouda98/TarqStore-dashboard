@@ -9,6 +9,18 @@ class AdsRepository implements AdsInterface
 {
     use ImageUploader;
 
+    private $adsModel;
+
+    public function __construct(Ads $ads)
+       {
+           $this->adsModel = $ads;
+       }
+
+       public function index($adsDataTable)
+       {
+        return $adsDataTable->render('ads.index');
+
+       }
     public function create()
     {
         return view('Ads.create');

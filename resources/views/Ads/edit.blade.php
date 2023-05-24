@@ -9,18 +9,18 @@
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Update Blog Category</h4>
+                                <h4>Update Ads</h4>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                        <form method="post" action="{{route('admin.blog.update')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{route('admin.ads.update')}}" enctype="multipart/form-data">
 {{--                            @if($errors->any())--}}
 {{--                                {{dd($errors->all())}}--}}
 {{--                            @endif--}}
-                            <input type="hidden" name="id" value="{{$blog->id}}">
+                            <input type="hidden" name="id" value="{{$ads->id}}">
                             @method('PUT')
-                           @include('Blogs._form')
+                           @include('Ads._form')
                         </form>
 
 
