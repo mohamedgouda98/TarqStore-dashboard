@@ -9,4 +9,8 @@ class Ads extends Model
 {
     use HasFactory;
     protected $fillable = ['image', 'url', 'position'];
+
+    public function getImageAttribute($value){
+        return env('AWS_URL').$value;
+    }
 }

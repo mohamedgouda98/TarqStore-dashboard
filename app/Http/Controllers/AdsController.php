@@ -16,7 +16,6 @@ class AdsController extends Controller
         $this->adsInterface = $adsInterface;
     }
 
-    public function index(){}
 
     public function index(AdsDataTable $AdsDataTable)
     {

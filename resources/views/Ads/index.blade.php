@@ -13,7 +13,7 @@
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
-                <a href="{{route('admin.blog.create')}}" class="btn btn-primary">Create Blog</a>
+                <a href="{{route('admin.ads.create')}}" class="btn btn-primary">Create Ads</a>
 
                 <div class="row layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
