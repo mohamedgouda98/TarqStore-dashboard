@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Ad;
+use App\Models\Ads;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -24,17 +25,18 @@ class AdsDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('actions', 'ads.datatable.action')
-        ->rawColumns(['actions'])
+        ->editColumn('images', '<img src=""/>')
+        ->rawColumns(['actions','images'])
         ->setRowId('id');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Ad $model
+     * @param \App\Models\Ads $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Ad $model): QueryBuilder
+    public function query(Ads $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -72,7 +74,7 @@ class AdsDataTable extends DataTable
     {
         return[
             ['name' => 'id',                  'data' => 'id',                  'title' => 'ID'],
-            ['name' => 'name',                 'data' => 'name',                'title' => 'Name'],
+            ['name' => 'image',                 'data' => 'image',                'title' => 'Image'],
             ['name' => 'actions',             'data' => 'actions',             'title' => 'Actions', 'exportable' => false, 'printable' => false, 'orderable' => false, 'searchable' => false],
             ];
     }
