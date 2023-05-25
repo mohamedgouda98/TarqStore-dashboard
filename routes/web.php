@@ -10,6 +10,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware'=>'auth'
             });
 
         });
+
+
+
+        Route::group(['prefix'=> 'sliders', 'as' => 'slider.'], function(){
+//                Route::get('/', [SliderController::class, 'index'])->name('index');
+            Route::get('/create', [SliderController::class, 'create'])->name('create');
+            Route::post('/store', [SliderController::class, 'store'])->name('store');
+            Route::get('/getModelData/{model}', [SliderController::class, 'getModelData'])->name('model.data');
+//                Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('edit');
+//                Route::put('/update', [BlogCategoriesController::class, 'update'])->name('update');
+//                Route::delete('/delete', [BlogCategoriesController::class, 'delete'])->name('delete');
+        });
+
+
 
         Route::group(['prefix'=> 'settings', 'as' => 'setting.'], function(){
             Route::get('/', [SettingsController::class, 'index'])->name('index');

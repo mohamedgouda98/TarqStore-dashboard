@@ -47,3 +47,28 @@ function updateInput(value)
     $("#valueInput").prop('type', value);
     $("#valueInput").attr('value', '');
 }
+
+
+function getModelData($value)
+{
+    console.log($value);
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+ $.ajax({
+     url: `/sliders/getModelData/${$value}`,
+     method: 'get',
+     success: function (res) {
+         $('#model_id').empty();
+         res.forEach(e => {
+             $('#model_id').append($('<option>', {value:e.id, text:e.name.en}))
+         })
+     }
+ });
+
+}
