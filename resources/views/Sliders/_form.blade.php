@@ -37,6 +37,15 @@
     @enderror
 </div>
 
+<div class="form-group mb-3">
+    <label>Show in Home</label><br>
+    <input type="radio" name="show_in_home" value="true"> True
+    <input type="radio" name="show_in_home" value="false"> False
+    @error('model')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
+</div>
+
 
 <div class="form-group mb-3">
     <label>Model ID</label><br>

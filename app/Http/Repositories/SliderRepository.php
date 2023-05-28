@@ -3,8 +3,8 @@
 namespace App\Http\Repositories;
 use App\Http\Interfaces\SliderInterface;
 use App\Http\Trait\ImageUploader;
-use App\Models\Product;
 use App\Models\Slider;
+use function Aws\boolean_value;
 
 class SliderRepository implements SliderInterface
 {
@@ -23,7 +23,9 @@ class SliderRepository implements SliderInterface
             'position' => $request->position,
             'model' => $request->model,
             'model_id' => $request->model_id,
+            'show_in_home' => boolean_value($request->show_in_home)
         ]);
+
     }
 
     public function getModelData($model)
